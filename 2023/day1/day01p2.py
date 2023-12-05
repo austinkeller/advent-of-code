@@ -7,7 +7,7 @@ def calculate_sum():
     total_sum = 0
 
     # Open input file
-    with open("input.txt", "r") as f:
+    with open(0) as f:
         # Read file
         for line in f.readlines():
             logger.debug(f"Line: {line}")
@@ -30,7 +30,7 @@ def calculate_sum_2():
     total_sum = 0
 
     # Open input file
-    with open("input.txt", "r") as f:
+    with open(0) as f:
         # Read file
         for line in f.readlines():
             logger.debug(f"Line: {line}")
@@ -139,7 +139,7 @@ def calculate_sum_with_words():
     total_sum = 0
 
     # Open input file
-    with open("input.txt", "r") as f:
+    with open(0) as f:
         # Read file
         for i, line in enumerate(f.readlines()):
             logger.debug(f"Line: {line.strip()}")
