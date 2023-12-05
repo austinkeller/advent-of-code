@@ -14,7 +14,7 @@ with open(0) as f:
 
 # Read file
 for line_num, line in enumerate(lines):
-    symbols = re.finditer(r'(\*)', line)
+    symbols = re.finditer(r"(\*)", line)
     for symbol in symbols:
         numbers = []
         # Find digits
@@ -25,7 +25,14 @@ for line_num, line in enumerate(lines):
                 if j < 0 or j >= len(line):
                     continue
                 if lines[i][j].isdigit():
-                    if any([number["start"] <= j and number["end"] > j and i == number["row"] for number in numbers]):
+                    if any(
+                        [
+                            number["start"] <= j
+                            and number["end"] > j
+                            and i == number["row"]
+                            for number in numbers
+                        ]
+                    ):
                         # already saw number
                         continue
                     # Found number, extract it
@@ -35,7 +42,14 @@ for line_num, line in enumerate(lines):
                     high = j
                     while high < len(line) and lines[i][high].isdigit():
                         high += 1
-                    numbers.append({"value": int(lines[i][low:high]), "start": low, "end": high, "row": i})
+                    numbers.append(
+                        {
+                            "value": int(lines[i][low:high]),
+                            "start": low,
+                            "end": high,
+                            "row": i,
+                        }
+                    )
         if len(numbers) == 2:
             # Found a gear
             total_sum += numbers[1]["value"] * numbers[0]["value"]

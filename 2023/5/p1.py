@@ -55,8 +55,8 @@ with open(0) as f:
 
 locations = []
 for seed in seeds:
-    key = 'seed'
-    while key != 'location':
+    key = "seed"
+    while key != "location":
         print(f"{key}: {seed}")
         mapper = mappers[key]
         seed = mapper[seed]

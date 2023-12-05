@@ -23,13 +23,13 @@ with open(0) as f:
     for i, line in enumerate(f.readlines()):
         print(f"Card {i + 1}")
         line = line.strip()
-        _, line = line.split(':')
+        _, line = line.split(":")
         line = line.strip()
-        winning_nums, card_nums = line.split('|')
-        winning_nums = winning_nums.strip().split(' ')
+        winning_nums, card_nums = line.split("|")
+        winning_nums = winning_nums.strip().split(" ")
         # Filter out empty strings
         winning_nums = list(filter(None, winning_nums))
-        card_nums = card_nums.strip().split(' ')
+        card_nums = card_nums.strip().split(" ")
         # Filter out empty strings
         card_nums = list(filter(None, card_nums))
 
@@ -43,7 +43,7 @@ with open(0) as f:
         for num, count in winning_nums.items():
             if num in card_nums:
                 num_wins += 1
-        
+
         print(f"Won {num_wins} times")
 
         # Get extra cards for this card (if any)

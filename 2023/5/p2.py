@@ -55,7 +55,7 @@ def join_mappers(mapper1: Mapper, mapper2: Mapper):
     boundaries = []
     for i_key in intermediate_keys:
         boundaries.append((mapper1.reverse_get(i_key), mapper2.get(i_key)))
-    
+
     boundaries = list(sorted(boundaries))
 
     # Create new maps from the boundaries
@@ -111,7 +111,7 @@ while total_mapper.dest_key != "location":
 
 # Break all seed ranges that span multiple mapper source ranges into non-overlapping seed ranges
 new_seed_ranges = []
-for (start_seed, seed_range) in seed_ranges:
+for start_seed, seed_range in seed_ranges:
     new_seed_ranges_for_seed_range = []
     # Split seed range anywhere a mapper source range boundary is crossed
     for m in total_mapper.maps:
@@ -120,16 +120,23 @@ for (start_seed, seed_range) in seed_ranges:
         if source_start > start_seed and source_start < start_seed + seed_range - 1:
             # Split seed range
             # print(f"Split seed range on source start: {start_seed}, {source_start - start_seed}")
-            new_seed_ranges_for_seed_range.append((start_seed, source_start - start_seed))
+            new_seed_ranges_for_seed_range.append(
+                (start_seed, source_start - start_seed)
+            )
             seed_range -= source_start - start_seed
             start_seed = source_start
-        if source_start + range_ > start_seed and source_start + range_ < start_seed + seed_range - 1:
+        if (
+            source_start + range_ > start_seed
+            and source_start + range_ < start_seed + seed_range - 1
+        ):
             # Split seed range
             # print(f"Split seed range on source end: {start_seed}, {source_start + range_ - start_seed}")
-            new_seed_ranges_for_seed_range.append((start_seed, source_start + range_ - start_seed))
+            new_seed_ranges_for_seed_range.append(
+                (start_seed, source_start + range_ - start_seed)
+            )
             seed_range -= source_start + range_ - start_seed
             start_seed = source_start + range_
-        
+
     new_seed_ranges_for_seed_range.append((start_seed, seed_range))
     new_seed_ranges.extend(new_seed_ranges_for_seed_range)
 
@@ -138,7 +145,7 @@ for (start_seed, seed_range) in seed_ranges:
 
 # Now map the seed ranges to location ranges, pick the minimum location, and then reverse map to get the seed
 min_location = None
-for (start_seed, seed_range) in new_seed_ranges:
+for start_seed, seed_range in new_seed_ranges:
     start_location = total_mapper[start_seed]
     # print(f"start_seed: {start_seed}, seed_range: {seed_range}, start_location: {start_location}")
     if min_location is None or start_location < min_location:

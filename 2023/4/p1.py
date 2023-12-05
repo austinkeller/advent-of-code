@@ -17,13 +17,13 @@ with open(0) as f:
     # Read file
     for i, line in enumerate(f.readlines()):
         line = line.strip()
-        _, line = line.split(':')
+        _, line = line.split(":")
         line = line.strip()
-        winning_nums, card_nums = line.split('|')
-        winning_nums = winning_nums.strip().split(' ')
+        winning_nums, card_nums = line.split("|")
+        winning_nums = winning_nums.strip().split(" ")
         # Filter out empty strings
         winning_nums = list(filter(None, winning_nums))
-        card_nums = card_nums.strip().split(' ')
+        card_nums = card_nums.strip().split(" ")
         # Filter out empty strings
         card_nums = list(filter(None, card_nums))
 

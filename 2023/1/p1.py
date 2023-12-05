@@ -12,12 +12,12 @@ with open(0) as f:
         for c in line:
             m[i].append(c)
 
-print(re.findall('(/d+)', "467..114.."))
+print(re.findall("(/d+)", "467..114.."))
 
 with open(0) as f:
     # Read file
     for i, line in enumerate(f.readlines()):
-        numbers = re.findall('(/d+)', line)
+        numbers = re.findall("(/d+)", line)
         numbers
 
 
